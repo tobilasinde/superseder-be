@@ -32,23 +32,27 @@ export const listCars = async (
 	user: UserInterface,
 	query: Record<string, any>
 ) => {
-	const user_detail = await findOne('User', { where: { id: user.iss } })
 	const where: any = {}
-	if (user_detail.fav_brands) where.make = user_detail.fav_brands
-	if (user_detail.min_year) where.year = { [Op.gte]: user_detail.min_year }
-	if (user_detail.transmission) where.transmission = user_detail.transmission
-	if (user_detail.max_mileage)
-		where.mileage = { [Op.lte]: user_detail.max_mileage }
-	if (user_detail.fuel_type) where.fuelType = user_detail.fuel_type
-	if (user_detail.max_budget) where.price = { [Op.lte]: user_detail.max_budget }
-	if (user_detail.min_budget) where.price = { [Op.gte]: user_detail.min_budget }
-	if (user_detail.annual_income && user_detail.purchase_preference > 0) {
-		const incomeInXYears =
-			user_detail.annual_income *
-			user_detail.purchase_preference *
-			settings.percentage_of_income
-		where[`total${user_detail.purchase_preference}Years`] = {
-			[Op.lte]: incomeInXYears,
+	if (user.iss) {
+		const user_detail = await findOne('User', { where: { id: user.iss } })
+		if (user_detail.fav_brands) where.make = user_detail.fav_brands
+		if (user_detail.min_year) where.year = { [Op.gte]: user_detail.min_year }
+		if (user_detail.transmission) where.transmission = user_detail.transmission
+		if (user_detail.max_mileage)
+			where.mileage = { [Op.lte]: user_detail.max_mileage }
+		if (user_detail.fuel_type) where.fuelType = user_detail.fuel_type
+		if (user_detail.max_budget)
+			where.price = { [Op.lte]: user_detail.max_budget }
+		if (user_detail.min_budget)
+			where.price = { [Op.gte]: user_detail.min_budget }
+		if (user_detail.annual_income && user_detail.purchase_preference > 0) {
+			const incomeInXYears =
+				user_detail.annual_income *
+				user_detail.purchase_preference *
+				settings.percentage_of_income
+			where[`total${user_detail.purchase_preference}Years`] = {
+				[Op.lte]: incomeInXYears,
+			}
 		}
 	}
 	const order: OrderItem[] = [
@@ -64,7 +68,7 @@ export const listCars = async (
 			query.sort_order || 'asc',
 		],
 	]
-	const limit = query.page_size || 20
+	const limit = query.page_size || 4
 	const offset = (Number(query.page_number || 1) - 1) * limit
 	return await findAndCountAll(modelName, { where, order, limit, offset })
 }

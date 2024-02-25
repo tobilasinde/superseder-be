@@ -38,6 +38,7 @@ const authorize = async (req: Request, res: Response, next: NextFunction) => {
 export default authorize
 const openRoutes = [
 	{ url: '/api/user', method: 'POST' },
+	{ url: '/api/car?', method: 'GET' },
 	{ url: '/api/auth/verify_reset_token', method: 'POST' },
 	{ url: '/api/auth/reset_password_request', method: 'POST' },
 	{ url: '/api/auth/change_password', method: 'POST' },
