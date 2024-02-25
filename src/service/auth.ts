@@ -5,7 +5,7 @@ import { generateHash } from '../utils/functions'
 const modelName = 'User'
 
 export const login = async (data: { email: string; password: string }) => {
-	const where: any = { email: data.email }
+	const where: any = { email: data.email.toLowerCase() }
 	const u = await findOne(modelName, {
 		where,
 	})

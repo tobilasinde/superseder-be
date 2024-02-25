@@ -13,6 +13,7 @@ export const createUser = async (
 	user: UserInterface,
 	data: Record<string, any>
 ) => {
+	data.email = data.email.toLowerCase()
 	const result = await findOrCreate(modelName, user, data, {
 		email: data.email,
 	})
