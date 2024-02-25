@@ -1,0 +1,58 @@
+{
+	"name": "schedule-app",
+	"version": "1.0.0",
+	"description": "Multitenant Schedule software as a service for Fambo Wealth Corp",
+	"main": "bin/www.ts",
+	"scripts": {
+		"start": "node dist/bin/www.js",
+		"dev": "nodemon bin/www.ts",
+		"build": "npx tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://tobilasinde@bitbucket.org/fambo-wealth-corp/backend.git"
+	},
+	"author": "Anthony Olasinde",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/fambo-wealth-corp/backend#readme",
+	"bugs": {
+		"url": "https://bitbucket.org/fambo-wealth-corp/backend/issues"
+	},
+	"dependencies": {
+		"async": "^3.2.5",
+		"axios": "^1.6.7",
+		"azure-cognitiveservices-search": "^1.1.0-preview",
+		"cls-hooked": "^4.2.2",
+		"cors": "^2.8.5",
+		"csvtojson": "^2.0.10",
+		"dayjs": "^1.11.10",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"express-async-errors": "^3.1.1",
+		"express-validator": "^7.0.1",
+		"he": "^1.2.0",
+		"jsonwebtoken": "^9.0.2",
+		"nodemailer": "^6.9.8",
+		"nodemon": "^3.0.2",
+		"openai": "^4.28.0",
+		"openapi": "^1.0.1",
+		"pg": "^8.11.3",
+		"pg-hstore": "^2.3.4",
+		"sequelize": "^6.35.2",
+		"ts-node": "^10.9.2"
+	},
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.2",
+		"@types/cls-hooked": "^4.3.8",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/he": "^1.2.3",
+		"@types/jsonwebtoken": "^9.0.5",
+		"@types/node": "^20.10.6",
+		"@types/nodemailer": "^6.4.14",
+		"@types/sequelize": "^4.28.19",
+		"sequelize-cli": "^6.6.2",
+		"typescript": "^5.3.3"
+	}
+}
